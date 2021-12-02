@@ -14,11 +14,10 @@ public class DiApplication {
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(DiApplication.class, args);
 
+
+		System.out.println("-------- Primary Bean ---------------");
 		MyController myController = (MyController) ctx.getBean("myController");
-
-		String gretting = myController.sayHello();
-
-		System.out.println(gretting);
+		System.out.println(myController.sayHello());
 
 		System.out.println("-------- Property ---------------");
 		PropertyInjectionController propertyInjectionController = (PropertyInjectionController) ctx.getBean("propertyInjectionController");
@@ -31,6 +30,7 @@ public class DiApplication {
 		System.out.println("-------- Constructor ---------------");
 		ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) ctx.getBean("constructorInjectedController");
 		System.out.println(constructorInjectedController.getGreeting());
+
 
 	}
 
