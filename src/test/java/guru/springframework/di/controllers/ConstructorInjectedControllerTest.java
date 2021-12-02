@@ -1,13 +1,8 @@
 package guru.springframework.di.controllers;
 
-import guru.springframework.di.services.GreetingService;
-import guru.springframework.di.services.GreetingServiceImpl;
+import guru.springframework.di.services.ConstructorGreetingService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import javax.naming.ldap.Control;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ConstructorInjectedControllerTest {
 
@@ -15,7 +10,7 @@ class ConstructorInjectedControllerTest {
 
     @BeforeEach
     void setUp() {
-        controller = new ConstructorInjectedController(new GreetingServiceImpl());
+        controller = new ConstructorInjectedController(new ConstructorGreetingService());
     }
 
     @Test
