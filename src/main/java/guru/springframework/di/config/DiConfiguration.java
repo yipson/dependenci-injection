@@ -1,6 +1,11 @@
-package guru.springframework.di.datasource;
+package guru.springframework.di.config;
 
-public class FakeDataSource {
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+
+@ConfigurationProperties("guru")
+@Configuration
+public class DiConfiguration {
 
     private String username;
     private String password;
@@ -27,5 +32,4 @@ public class FakeDataSource {
     public void setJdbcUrl(String jdbcUrl) {
         this.jdbcUrl = jdbcUrl;
     }
-
 }

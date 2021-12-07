@@ -1,5 +1,6 @@
 package guru.springframework.di;
 
+import guru.springframework.di.config.DiConfiguration;
 import guru.springframework.di.controllers.*;
 import guru.springframework.di.datasource.FakeDataSource;
 import guru.springframework.di.services.PrototypeBean;
@@ -59,6 +60,11 @@ public class DiApplication {
 		System.out.println(fakeDataSource.getJdbcUrl());
 
 
+		System.out.println("--------Configuration props bean----------");
+		DiConfiguration diConfiguration = ctx.getBean(DiConfiguration.class);
+		System.out.println(diConfiguration.getUsername());
+		System.out.println(diConfiguration.getPassword());
+		System.out.println(diConfiguration.getJdbcUrl());
 
 	}
 
