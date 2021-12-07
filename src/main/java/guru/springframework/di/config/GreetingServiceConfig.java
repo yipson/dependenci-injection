@@ -5,11 +5,9 @@ import com.springframework.pets.PetServiceFactory;
 import guru.springframework.di.repositories.EnglishGreetingRepository;
 import guru.springframework.di.repositories.EnglishGreetingRepositoryImpl;
 import guru.springframework.di.services.*;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.*;
 
+@ImportResource("classpath:di-config.xml")
 @Configuration
 public class GreetingServiceConfig {
 
@@ -53,10 +51,11 @@ public class GreetingServiceConfig {
         return new PrimaryGreetingService();
     }
 
-    @Bean
-    ConstructorGreetingService constructorGreetingService(){
-        return new ConstructorGreetingService();
-    }
+    //@Bean
+    //fue configurado en di-config.xml
+//    ConstructorGreetingService constructorGreetingService(){
+//        return new ConstructorGreetingService();
+//    }
 
     @Bean
     PropertyInjectedGreetingService propertyInjectedGreetingService(){
