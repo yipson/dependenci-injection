@@ -1,6 +1,7 @@
 package guru.springframework.di;
 
 import guru.springframework.di.config.DiConfiguration;
+import guru.springframework.di.config.DiConstructorConfig;
 import guru.springframework.di.controllers.*;
 import guru.springframework.di.datasource.FakeDataSource;
 import guru.springframework.di.services.PrototypeBean;
@@ -65,6 +66,14 @@ public class DiApplication {
 		System.out.println(diConfiguration.getUsername());
 		System.out.println(diConfiguration.getPassword());
 		System.out.println(diConfiguration.getJdbcUrl());
+
+
+		System.out.println("------- Constructor Binding -----------");
+		DiConstructorConfig diConstructorConfig = ctx.getBean(DiConstructorConfig.class);
+		System.out.println(diConstructorConfig.getUsername());
+		System.out.println(diConstructorConfig.getPassword());
+		System.out.println(diConstructorConfig.getJdbcUrl());
+
 
 	}
 

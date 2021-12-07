@@ -6,20 +6,21 @@ import guru.springframework.di.datasource.FakeDataSource;
 import guru.springframework.di.repositories.EnglishGreetingRepository;
 import guru.springframework.di.repositories.EnglishGreetingRepositoryImpl;
 import guru.springframework.di.services.*;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.*;
 
 
+@EnableConfigurationProperties(DiConstructorConfig.class)
 @ImportResource("classpath:di-config.xml")
 @Configuration
 public class GreetingServiceConfig {
 
     @Bean
-    FakeDataSource fakeDataSource(DiConfiguration diConfiguration){
+    FakeDataSource fakeDataSource(DiConstructorConfig diConstructorConfig){
         FakeDataSource fakeDataSource = new FakeDataSource();
-        fakeDataSource.setUsername(diConfiguration.getUsername());
-        fakeDataSource.setPassword(diConfiguration.getPassword());
-        fakeDataSource.setJdbcUrl(diConfiguration.getJdbcUrl());
+        fakeDataSource.setUsername(diConstructorConfig.getUsername());
+        fakeDataSource.setPassword(diConstructorConfig.getPassword());
+        fakeDataSource.setJdbcUrl(diConstructorConfig.getJdbcUrl());
         return fakeDataSource;
     }
 
