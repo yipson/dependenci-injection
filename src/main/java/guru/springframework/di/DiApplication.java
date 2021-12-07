@@ -4,12 +4,18 @@ import guru.springframework.di.controllers.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
+@ComponentScan(basePackages = {"guru.springframework.di", "com.springframework.pets"})
 @SpringBootApplication
 public class DiApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(DiApplication.class, args);
+
+		PetController petController = ctx.getBean("petController", PetController.class);
+		System.out.println("--- The Best Pet is ---");
+		System.out.println(petController.whichPetIsTheBest());
 
 		System.out.println("-------- I18n ---------------");
 		I18nController i18nController = (I18nController) ctx.getBean("i18nController");
