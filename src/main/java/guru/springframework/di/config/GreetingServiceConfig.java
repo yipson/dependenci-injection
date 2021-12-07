@@ -1,5 +1,7 @@
 package guru.springframework.di.config;
 
+import com.springframework.pets.PetService;
+import com.springframework.pets.PetServiceFactory;
 import guru.springframework.di.repositories.EnglishGreetingRepository;
 import guru.springframework.di.repositories.EnglishGreetingRepositoryImpl;
 import guru.springframework.di.services.*;
@@ -7,10 +9,26 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Service;
 
 @Configuration
 public class GreetingServiceConfig {
+
+    @Bean
+    PetServiceFactory petServiceFactory(){
+        return new PetServiceFactory();
+    }
+
+    @Profile({"dog", "default"})
+    @Bean
+    PetService dogPetService(PetServiceFactory petServiceFactory){
+        return petServiceFactory.getPetService("dog");
+    }
+
+    @Profile("cat")
+    @Bean
+    PetService catPetService(PetServiceFactory petServiceFactory){
+        return petServiceFactory.getPetService("cat");
+    }
 
     @Profile({"ES", "default"})
     @Bean("i18nService")
